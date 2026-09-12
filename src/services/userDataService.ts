@@ -82,7 +82,7 @@ export async function updateUserStatus(uid: string, active: boolean): Promise<vo
   if (user) {
     try {
       const idToken = await user.getIdToken();
-      const backendUrl = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+      const backendUrl = import.meta.env.VITE_API_URL || import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
       const response = await fetch(`${backendUrl}/api/v1/admin/users/${uid}/status`, {
         method: 'PATCH',
         headers: {
@@ -149,7 +149,7 @@ export async function createFarmer(payload: CreateFarmerPayload): Promise<Create
 
   const idToken = await user.getIdToken();
 
-  const backendUrl = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+  const backendUrl = import.meta.env.VITE_API_URL || import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
 
   const response = await fetch(`${backendUrl}/api/v1/admin/users/farmer`, {
     method: 'POST',
